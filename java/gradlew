@@ -103,7 +103,7 @@ die () {
 } >&2
 
 # OS specific support (must be 'true' or 'false').
-cygwin=false
+cygwin=true
 msys=false
 darwin=false
 nonstop=false
@@ -113,7 +113,6 @@ case "$( uname )" in                #(
   MSYS* | MINGW* )  msys=true    ;; #(
   NONSTOP* )        nonstop=true ;;
 esac
-
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
 

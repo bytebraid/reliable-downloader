@@ -2,13 +2,10 @@ package com.accurx.reliabledownloader;
 
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
-
+/**
+ * Stock Interface to be implemented for the exercise
+ */
 public interface WebSystemCalls {
-
-    /**
-     * Does an HTTP HEAD REST call to just get the headers for a URL
-     */
-    CompletableFuture<HttpResponse<Void>> GetHeaders(String url);
 
     /**
      * Does a simple HTTP GET to download content from a URL
@@ -21,4 +18,9 @@ public interface WebSystemCalls {
      * @param to To value, in bytes
      */
     CompletableFuture<HttpResponse<byte[]>> DownloadPartialContent(String url, long from, long to);
+
+    /**
+     * Does an HTTP HEAD REST call to just get the headers for a URL
+     */
+    CompletableFuture<HttpResponse<Void>> GetHeaders(String url);
 }

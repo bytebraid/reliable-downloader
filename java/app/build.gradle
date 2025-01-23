@@ -9,6 +9,13 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
+    id 'jacoco' // Apply the JaCoCo plugin
+}
+
+
+jacoco {
+    toolVersion = "0.8.12" // Specify the JaCoCo version
 }
 
 repositories {
@@ -30,4 +37,33 @@ application {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+    finalizedBy(jacocoTestReport)
+}
+
+tasks.named('build') { 
+    dependsOn 'javadoc'
+}
+
+tasks.jacocoTestReport {
+    dependsOn test // Run tests before generating the report
+
+    reports {
+        xml.required.set(true)  // Generate XML report for CI tools like SonarQube
+        html.required.set(true) // Generate HTML report for local inspection
+        csv.required.set(false) // Disable CSV unless needed
+    }
+}
+
+tasks.named('javadoc') {
+    options {
+        encoding = 'UTF-8' // Ensure proper encoding
+        charSet = 'UTF-8'
+        locale = 'en'
+        memberLevel = JavadocMemberLevel.PRIVATE // Include public members only
+        links("https://docs.oracle.com/en/java/javase/23/docs/api/") // Link to Java API docs
+        addBooleanOption('html5', true) // Generate HTML5 output (for Java 9+)
+        addBooleanOption('Xdoclint:none', true) // Disable Javadoc warnings
+        windowTitle = "Accurx Reliable Downloader"
+        docTitle = "Documentation"
+    }
 }
