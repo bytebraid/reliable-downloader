@@ -1,5 +1,7 @@
 # 👩‍⚕️ Reliable Downloader Exercise 🖥️
 
+See other [README.md](java/README.md)
+
 [Find out more about Accurx](https://www.accurx.com/careers)
 
 Thank you for investing your time in our take-home exercise.
